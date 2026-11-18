@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow | Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="brand">Task<span>Flow.</span></div>
+        <div class="top-label">YOUR PERSONAL WORKSPACE</div>
+    </header>
+
+    <main class="container">
+
+        <section class="welcome">
+            <div>
+                <p class="eyebrow">STAY ORGANIZED</p>
+                <h1>Manage your day.</h1>
+                <p class="subtitle">Plan smarter. Get things done.</p>
+            </div>
+            <div class="today" id="today"></div>
+        </section>
+
+        <section class="stats">
+            <div class="stat-card">
+                <span class="stat-label">Total Tasks</span>
+                <strong id="totalCount">0</strong>
+                <small>All your tasks</small>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">Pending</span>
+                <strong id="pendingCount">0</strong>
+                <small>Waiting to be done</small>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">In Progress</span>
+                <strong id="progressCount">0</strong>
+                <small>Currently working on</small>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">Completed</span>
+                <strong id="completedCount">0</strong>
+                <small>Successfully finished</small>
+            </div>
+
+            <div class="stat-card overdue-card">
+                <span class="stat-label">Overdue</span>
+                <strong id="overdueCount">0</strong>
+                <small>Past their deadline</small>
+            </div>
+        </section>
+
+        <section class="progress-section">
+            <div class="progress-heading">
+                <div>
+                    <h3>Overall progress</h3>
+                    <p>Keep moving towards your goals.</p>
+                </div>
+                <strong id="progressPercent">0%</strong>
+            </div>
+            <div class="progress-track">
+                <div id="progressBar"></div>
+            </div>
+        </section>
+
+        <section class="workspace">
+
+            <div class="form-panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">TASK DETAILS</p>
+                        <h2 id="formHeading">Create a task</h2>
+                    </div>
+                    <span class="plus-icon">+</span>
+                </div>
+
+                <form id="taskForm">
+                    <label for="taskTitle">Task title *</label>
+                    <input type="text" id="taskTitle"
+                        placeholder="What needs to be done?" maxlength="150" required>
+
+                    <label for="taskDescription">Description</label>
+                    <textarea id="taskDescription"
+                        placeholder="Add some details..." rows="3"></textarea>
+
+                    <div class="form-row">
+                        <div>
+                            <label for="dueDate">Due date</label>
+                            <input type="date" id="dueDate">
+                        </div>
+
+                        <div>
+                            <label for="priority">Priority</label>
+                            <select id="priority">
+                                <option value="Low">Low</option>
+                                <option value="Medium" selected>Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <label for="category">Category</label>
+                    <select id="category">
+                        <option value="Study">Study</option>
+                        <option value="Work">Work</option>
+                        <option value="Personal" selected>Personal</option>
+                        <option value="Projects">Projects</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <button type="submit" class="primary-btn" id="submitBtn">
+                        + Add Task
+                    </button>
+
+                    <button type="button" class="cancel-btn hidden" id="cancelEdit">
+                        Cancel editing
+                    </button>
+                </form>
+            </div>
+
+            <div class="tasks-panel">
+                <div class="tasks-heading">
+                    <div>
+                        <p class="eyebrow">YOUR WORKSPACE</p>
+                        <h2>My Tasks</h2>
+                    </div>
+                    <span class="task-total" id="visibleCount">0 tasks</span>
+                </div>
+
+                <div class="search-box">
+                    <span>⌕</span>
+                    <input type="search" id="searchInput"
+                        placeholder="Search tasks...">
+                </div>
+
+                <div class="filters">
+                    <select id="statusFilter" aria-label="Filter by status">
+                        <option value="">All statuses</option>
+                        <option value="Pending">Pending</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+
+                    <select id="priorityFilter" aria-label="Filter by priority">
+                        <option value="">All priorities</option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+
+                    <select id="categoryFilter" aria-label="Filter by category">
+                        <option value="">All categories</option>
+                        <option value="Study">Study</option>
+                        <option value="Work">Work</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Projects">Projects</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div id="taskList" class="task-list">
+                    <p class="loading">Loading tasks...</p>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            TaskFlow <span>·</span> Make every day count.
+        </footer>
+
+    </main>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
